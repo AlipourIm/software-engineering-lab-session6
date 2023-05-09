@@ -1,18 +1,46 @@
 import org.junit.Test;
-import static org.junit.Assert.*;
+import prototype.shapes.Circle;
+import prototype.shapes.Rectangle;
 
+import static org.junit.Assert.*;
 public class PrototypeTest {
     @Test
-    public void testClone() {
-        ShapeCache.loadCache();
+    public void testCircleClone() {
+        Circle circle = new Circle();
+        circle.x = 10;
+        circle.y = 20;
+        circle.radius = 15;
+        circle.color = "red";
 
-        Shape clonedShape1 = ShapeCache.getShape("1");
-        assertEquals("Square", clonedShape1.getType());
+        Circle anotherCircle = (Circle) circle.clone();
 
-        Shape clonedShape2 = ShapeCache.getShape("2");
-        assertEquals("Circle", clonedShape2.getType());
+        assertEquals(anotherCircle, circle);
+    }
+    @Test
+    public void testRectangle() {
+        Rectangle rectangle = new Rectangle();
+        rectangle.width = 10;
+        rectangle.height = 20;
+        rectangle.color = "blue";
 
-        Shape clonedShape3 = ShapeCache.getShape("3");
-        assertEquals("Rectangle", clonedShape3.getType());
+        Rectangle anotherRectangle = (Rectangle) rectangle.clone();
+
+        assertEquals(rectangle, anotherRectangle);
+    }
+    @Test
+    public void testCircleNotEquals() {
+        Circle circle = new Circle();
+        circle.x = 10;
+        circle.y = 20;
+        circle.radius = 15;
+        circle.color = "red";
+
+        Circle circle2 = new Circle();
+        circle.x = 220;
+        circle.y = 200;
+        circle.radius = 10;
+        circle.color = "blue";
+
+        assertNotEquals(circle2, circle);
     }
 }
