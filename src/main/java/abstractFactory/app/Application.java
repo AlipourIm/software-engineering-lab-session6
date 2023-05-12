@@ -1,0 +1,32 @@
+package abstractFactory.app;
+
+import abstractFactory.buttons.Button;
+import abstractFactory.checkboxes.Checkbox;
+import abstractFactory.factories.GUIFactory;
+
+/**
+ * Factory users don't care which concrete factory they use since they work with
+ * abstractFactory.factories and products through abstract interfaces.
+ */
+public class Application {
+    private Button button;
+    private Checkbox checkbox;
+
+    public Application(GUIFactory factory) {
+        button = factory.createButton();
+        checkbox = factory.createCheckbox();
+    }
+
+    public void paint() {
+        button.paint();
+        checkbox.paint();
+    }
+
+    public Button getButton() {
+        return button;
+    }
+
+    public Checkbox getCheckbox() {
+        return checkbox;
+    }
+}
